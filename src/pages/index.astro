@@ -3,9 +3,11 @@ import Layout from "../layouts/Layout.astro";
 import SocialIcons from "../components/SocialIcons.jsx";
 import fotoGiovanni from "../assets/facciaProfilo.webp";
 import SectionContainer from "../components/SectionContainer.astro";
+import Header from "../components/Header.astro";
 import Projects from "../components/Projects.astro";
 import About from "../components/About.astro";
 import Contact from "../components/Contact.astro";
+import Footer from "../components/Footer.astro";
 ---
 
 <Layout
@@ -13,17 +15,18 @@ import Contact from "../components/Contact.astro";
   description="Contrata a Giovanni para desarrollar ideas innovativas."
 >
   <main>
-    <SectionContainer class="py-20 flex items-center gap-6">
+    <Header />
+    <SectionContainer class="py-28 flex items-center gap-6">
       <div class="flex-1">
         <h1 class="text-white text-5xl font-bold pb-4">Hola, soy Giovanni</h1>
-        <h2 class="text-1xl opacity-80 pb-4">
+        <h2 class="text-white text-1xl opacity-80 pb-4">
           Ingeniero informático 👨‍💻, apasionado por la tecnología y el desarrollo
           web.
         </h2>
         <SocialIcons />
       </div>
       <div class="relative w-56 h-56 lg:w-[250px] lg:h-[250px]">
-        <div class="absolute inset-0 bg-[#6633ee] rounded-full -z-10"></div>
+        <div class="absolute inset-0 bg-[#4c63c1] rounded-full -z-10"></div>
         <img
           src={fotoGiovanni.src}
           alt="Giovanni Raffa"
@@ -43,5 +46,7 @@ import Contact from "../components/Contact.astro";
     <SectionContainer id="contacto">
       <Contact />
     </SectionContainer>
+    
+    <Footer />
   </main>
 </Layout>

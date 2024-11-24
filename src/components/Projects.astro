@@ -1,5 +1,5 @@
 ---
-import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
+import { FaGithub, FaExternalLinkAlt, FaProjectDiagram } from "react-icons/fa";
 
 import project1Image1 from "../assets/projects/proyecto1-1.webp";
 import project1Image2 from "../assets/projects/proyecto1-2.webp";
@@ -29,7 +29,12 @@ const projects = [
 ---
 
 <section class="py-20">
-  <h2 class="text-white text-4xl font-bold text-center mb-12">Mis Proyectos</h2>
+  <h2
+    class="flex items-center justify-center gap-3 text-white text-4xl font-bold text-center mb-12"
+  >
+    <FaProjectDiagram size={32} className="text-blue-700" />
+    Mis Proyectos
+  </h2>
 
   <div class="grid gap-16">
     {
@@ -73,7 +78,7 @@ const projects = [
                 href={project.live}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="text-gray-400 hover:text-green-500 transition-transform transform hover:scale-110"
+                class="text-gray-400 hover:text-blue-800 transition-transform transform hover:scale-110"
               >
                 <FaExternalLinkAlt size={24} />
               </a>
