@@ -1,0 +1,112 @@
+---
+import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
+
+import project1Image1 from "../assets/projects/proyecto1-1.webp";
+import project1Image2 from "../assets/projects/proyecto1-2.webp";
+import project1Image3 from "../assets/projects/proyecto1-3.webp";
+import project2Image1 from "../assets/projects/proyecto2-1.webp";
+import project2Image2 from "../assets/projects/proyecto2-2.webp";
+import project2Image3 from "../assets/projects/proyecto2-3.webp";
+
+const projects = [
+  {
+    title: "NextPlayer",
+    description:
+      "Innovadora página web desarrollada con React que permite a los usuarios explorar los jugadores de fútbol más revalorizados en el mercado actual. Este proyecto combina técnicas de scraping, gestión de bases de datos en la nube y despliegue de aplicaciones.",
+    images: [project1Image1.src, project1Image2.src, project1Image3.src],
+    github: "https://github.com/gianni28/frontendNextPlayer",
+    live: "https://frontend-next-player.vercel.app/login",
+  },
+  {
+    title: "Centro médico de La Sabana",
+    description:
+      "Aplicación de escritorio desarrollada en Java con vistas diseñadas en Scene Builder, enfocada en la gestión de un centro médico. Este proyecto permite realizar operaciones CRUD completas para médicos y pacientes. Los pacientes pueden agendar citas con médicos específicos, optimizando el flujo de trabajo del centro médico.",
+    images: [project2Image1.src, project2Image2.src, project2Image3.src],
+    github: "https://github.com/gianni28/centro-medico-de-la-sabana",
+    live: "https://youtu.be/oU_JBw_fEJA",
+  },
+];
+---
+
+<section class="py-20">
+  <h2 class="text-white text-4xl font-bold text-center mb-12">Mis Proyectos</h2>
+
+  <div class="grid gap-16">
+    {
+      projects.map((project, projectIndex) => (
+        <div data-project class="flex flex-col lg:flex-row gap-6">
+          {/* Miniaturas */}
+          <div class="flex lg:flex-col gap-4 overflow-x-auto lg:overflow-visible">
+            {project.images.map((image, imgIndex) => (
+              <img
+                src={image}
+                alt={`Miniatura ${imgIndex + 1} del proyecto ${project.title}`}
+                class="thumbnail w-24 h-24 lg:w-32 lg:h-32 object-cover cursor-pointer rounded-lg border-2 border-transparent hover:border-white"
+                data-index={imgIndex}
+                data-project={projectIndex}
+              />
+            ))}
+          </div>
+
+          {/* Contenido Principal */}
+          <div class="flex-1 space-y-4">
+            <h3 class="text-white text-2xl font-bold">{project.title}</h3>
+            <p class="text-gray-400">{project.description}</p>
+            <img
+              src={project.images[0]}
+              alt={`Imagen destacada del proyecto ${project.title}`}
+              class="featured-image w-full h-auto rounded-lg shadow-lg"
+              data-project={projectIndex}
+            />
+
+            {/* Iconos */}
+            <div class="flex gap-4 mt-4">
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-gray-400 hover:text-white transition-transform transform hover:scale-110"
+              >
+                <FaGithub size={24} />
+              </a>
+              <a
+                href={project.live}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-gray-400 hover:text-green-500 transition-transform transform hover:scale-110"
+              >
+                <FaExternalLinkAlt size={24} />
+              </a>
+            </div>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const thumbnails = document.querySelectorAll(".thumbnail");
+
+    thumbnails.forEach((thumbnail) => {
+      thumbnail.addEventListener("click", (event) => {
+        const target = event.target;
+
+        // Validamos que target exista y sea un elemento de imagen
+        if (target && target instanceof HTMLImageElement) {
+          const projectIndex = target.dataset.project;
+          const imageIndex = target.dataset.index;
+
+          const featuredImage = document.querySelector(
+            `.featured-image[data-project="${projectIndex}"]`
+          );
+
+          if (featuredImage instanceof HTMLImageElement) {
+            featuredImage.src = target.src;
+          }
+        }
+      });
+    });
+  });
+</script>

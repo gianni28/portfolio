@@ -1,4 +1,6 @@
 ---
+import faccia from "../assets/faccia.webp"
+
 const navItems = [
   {
     title: "Proyectos",
@@ -19,7 +21,7 @@ const navItems = [
 ---
 
 <header class="flex justify-between items-center py-5 w-[1120px] mx-auto">
-  <img class="rounded-full size-12" src="../assets/faccia.webp" alt="Gianni" />
+  <img class="rounded-full size-12" src={faccia.src} alt="Gianni" />
   <nav class="flex flex-row gap-x-10 opacity-80">
     {
       navItems.map((link) => (
