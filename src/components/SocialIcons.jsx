@@ -25,16 +25,6 @@ const SocialIcons = () => {
         <FaGithub size={32} />
       </a>
 
-      {/* WhatsApp */}
-      <a
-        href="https://wa.me/573004689809"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="text-gray-400 hover:text-green-500 transform transition-transform duration-300 hover:scale-125"
-      >
-        <FaWhatsapp size={32} />
-      </a>
-
       {/* Gmail */}
       <a
         href="mailto:giovarafi@gmail.com"
