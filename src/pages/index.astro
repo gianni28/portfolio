@@ -3,11 +3,10 @@ import Layout from "../layouts/Layout.astro";
 import SocialIcons from "../components/SocialIcons.jsx";
 import fotoGiovanni from "../assets/facciaProfilo.webp";
 import SectionContainer from "../components/SectionContainer.astro";
-import Header from "../components/Header.astro";
 import Projects from "../components/Projects.astro";
 import About from "../components/About.astro";
 import Contact from "../components/Contact.astro";
-import Footer from "../components/Footer.astro";
+
 ---
 
 <Layout
@@ -15,7 +14,6 @@ import Footer from "../components/Footer.astro";
   description="Contrata a Giovanni para desarrollar ideas innovativas."
 >
   <main>
-    <Header />
     <SectionContainer class="py-28 flex items-center gap-6">
       <div class="flex-1">
         <h1 class="text-white text-5xl font-bold pb-4">Hola, soy Giovanni</h1>
@@ -46,7 +44,5 @@ import Footer from "../components/Footer.astro";
     <SectionContainer id="contacto">
       <Contact />
     </SectionContainer>
-    
-    <Footer />
   </main>
 </Layout>
