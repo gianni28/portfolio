@@ -1,5 +1,10 @@
 ---
-import { FaGithub, FaExternalLinkAlt, FaProjectDiagram } from "react-icons/fa";
+import { FaGithub, FaExternalLinkAlt, FaProjectDiagram , FaReact, FaInfoCircle, FaHtml5, FaCss3Alt, FaJs, FaPython, FaJava } from "react-icons/fa";
+import { RiTailwindCssFill } from "react-icons/ri";
+import { IoLogoFirebase, IoBuild } from "react-icons/io5";
+import { GrMysql } from "react-icons/gr";
+import { DiMsqlServer } from "react-icons/di";
+import { SiAstro } from "react-icons/si";
 
 import project1Image1 from "../assets/projects/proyecto1-1.webp";
 import project1Image2 from "../assets/projects/proyecto1-2.webp";
@@ -12,18 +17,26 @@ const projects = [
   {
     title: "NextPlayer",
     description:
-      "Innovadora página web desarrollada con React que permite a los usuarios explorar los jugadores de fútbol más revalorizados en el mercado actual. Este proyecto combina técnicas de scraping, gestión de bases de datos en la nube y despliegue de aplicaciones.",
+      "Innovadora página web desarrollada con React que permite a los usuarios explorar los jugadores de fútbol más revalorizados en el mercado actual. Este proyecto combina técnicas de scraping, gestión de bases de datos en la nube y despliegue de aplicaciones. (El login podría tardar unos segundos en cargar debido a que el backend está en un plan gratuito de Render).",
     images: [project1Image1.src, project1Image2.src, project1Image3.src],
     github: "https://github.com/gianni28/frontendNextPlayer",
     live: "https://frontend-next-player.vercel.app/login",
+    technologies: [
+      { name: "React", icon: FaReact },
+      { name: "Firebase", icon: IoLogoFirebase },
+    ],
   },
   {
     title: "Centro médico de La Sabana",
     description:
-      "Aplicación de escritorio desarrollada en Java con vistas diseñadas en Scene Builder, enfocada en la gestión de un centro médico. Este proyecto permite realizar operaciones CRUD completas para médicos y pacientes. Los pacientes pueden agendar citas con médicos específicos, optimizando el flujo de trabajo del centro médico.",
+      "Aplicación de escritorio desarrollada en Java con vistas diseñadas en Scene Builder y con persistencia de datos, enfocada en la gestión de un centro médico. Este proyecto permite realizar operaciones CRUD completas para médicos y pacientes. Los pacientes pueden agendar citas con médicos específicos, optimizando el flujo de trabajo del centro médico.",
     images: [project2Image1.src, project2Image2.src, project2Image3.src],
     github: "https://github.com/gianni28/centro-medico-de-la-sabana",
     live: "https://youtu.be/oU_JBw_fEJA",
+    technologies: [
+      { name: "Java", icon: FaJava },
+      { name: "Scene Builder", icon: IoBuild },
+    ],
   },
 ];
 ---
@@ -64,24 +77,40 @@ const projects = [
               data-project={projectIndex}
             />
 
-            {/* Iconos */}
-            <div class="flex gap-4 mt-4">
-              <a
-                href={project.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="text-gray-400 hover:text-white transition-transform transform hover:scale-110"
-              >
-                <FaGithub size={24} />
-              </a>
-              <a
-                href={project.live}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="text-gray-400 hover:text-blue-800 transition-transform transform hover:scale-110"
-              >
-                <FaExternalLinkAlt size={24} />
-              </a>
+            {/* Contenedor de Iconos */}
+            <div class="flex items-center justify-between mt-4">
+              {/* Iconos de GitHub y External Link */}
+              <div class="flex gap-4">
+                <a
+                  href={project.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-gray-400 hover:text-white transition-transform transform hover:scale-110"
+                >
+                  <FaGithub size={24} />
+                </a>
+                <a
+                  href={project.live}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-gray-400 hover:text-blue-800 transition-transform transform hover:scale-110"
+                >
+                  <FaExternalLinkAlt size={24} />
+                </a>
+              </div>
+
+              {/* Tecnologías */}
+              <div class="flex gap-2">
+                {project.technologies.map((tech, techIndex) => (
+                  <div
+                    data-tech={techIndex}
+                    class="flex items-center gap-1 text-gray-400 hover:text-white"
+                  >
+                    <tech.icon size={20} />
+                    <span class="text-sm">{tech.name}</span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -89,6 +118,7 @@ const projects = [
     }
   </div>
 </section>
+
 
 <script>
   document.addEventListener("DOMContentLoaded", () => {

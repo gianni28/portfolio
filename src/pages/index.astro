@@ -7,6 +7,7 @@ import Projects from "../components/Projects.astro";
 import About from "../components/About.astro";
 import Contact from "../components/Contact.astro";
 
+import "../styles/global.css";
 ---
 
 <Layout
@@ -16,8 +17,10 @@ import Contact from "../components/Contact.astro";
   <main>
     <SectionContainer class="py-28 flex items-center gap-6">
       <div class="flex-1">
-        <h1 class="text-white text-5xl font-bold pb-4">Hola, soy Giovanni</h1>
-        <h2 class="text-white text-1xl opacity-80 pb-4">
+        <h1 class="text-white text-5xl font-bold pb-4">
+          Hola, soy <span class="text-blue-500">Giovanni</span>
+        </h1>
+        <h2 class="text-white text-1xl opacity-80 pb-4 text-pretty">
           Ingeniero informático 👨‍💻, apasionado por la tecnología y el desarrollo
           web.
         </h2>
