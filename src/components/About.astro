@@ -1,88 +1,95 @@
 ---
-import { BorderBeam } from "./ui/border-beam";
-import { FaInfoCircle, FaHtml5, FaCss3Alt, FaJs, FaReact, FaPython, FaJava } from 'react-icons/fa';
+import type { IconType } from "react-icons";
+import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaPython, FaJava, FaGitAlt } from "react-icons/fa";
 import { RiTailwindCssFill } from "react-icons/ri";
 import { IoLogoFirebase } from "react-icons/io5";
 import { GrMysql } from "react-icons/gr";
 import { DiMsqlServer } from "react-icons/di";
-import { SiAstro } from "react-icons/si";
+import { SiAstro, SiVercel, SiRender, SiNetlify } from "react-icons/si";
+import { TbBrowserCheck } from "react-icons/tb";
+import SectionHeading from "./SectionHeading.astro";
 
+const groups: { title: string; items: { name: string; Icon: IconType; color: string }[] }[] = [
+  {
+    title: "Frontend",
+    items: [
+      { name: "HTML", Icon: FaHtml5, color: "#e34f26" },
+      { name: "CSS", Icon: FaCss3Alt, color: "#2965f1" },
+      { name: "JavaScript", Icon: FaJs, color: "#f7df1e" },
+      { name: "React", Icon: FaReact, color: "#61dafb" },
+      { name: "Astro", Icon: SiAstro, color: "#bc52ee" },
+      { name: "Tailwind CSS", Icon: RiTailwindCssFill, color: "#38bdf8" },
+    ],
+  },
+  {
+    title: "Lenguajes y datos",
+    items: [
+      { name: "Python", Icon: FaPython, color: "#ffd43b" },
+      { name: "Java", Icon: FaJava, color: "#f89820" },
+      { name: "MySQL", Icon: GrMysql, color: "#6aa3d8" },
+      { name: "SQL Server", Icon: DiMsqlServer, color: "#e8625a" },
+      { name: "Firebase", Icon: IoLogoFirebase, color: "#ffca28" },
+    ],
+  },
+  {
+    title: "Herramientas y despliegue",
+    items: [
+      { name: "Git y GitHub", Icon: FaGitAlt, color: "#f05032" },
+      { name: "Playwright", Icon: TbBrowserCheck, color: "#45ba4b" },
+      { name: "Vercel", Icon: SiVercel, color: "#ffffff" },
+      { name: "Render", Icon: SiRender, color: "#ffffff" },
+      { name: "Netlify", Icon: SiNetlify, color: "#32e6e2" },
+    ],
+  },
+];
+
+const languages = ["Español", "Italiano", "Inglés"];
 ---
 
-<h2
-  class="flex items-center justify-center gap-3 text-white text-4xl font-bold text-center mb-12"
->
-  <FaInfoCircle size={32} className="text-blue-700" /> Sobre mí
-</h2>
-<div
-  class="relative z-10 max-w-4xl mx-auto p-6 rounded-xl bg-gray-800 border border-gray-700 shadow-lg shadow-gray-900/50"
->
-  <BorderBeam />
-  <p class="text-lg leading-relaxed mb-6 text-left text-gray-300">
-    Actualmente estoy cursando mis estudios en la Universidad de La Sabana 🎓,
-    donde he desarrollado una sólida base en programación y resolución de
-    problemas tecnológicos.
-  </p>
+<section id="sobre-mi" class="container-page py-20 md:py-28">
+  <div class="grid gap-12 lg:grid-cols-[1fr_1.15fr] lg:gap-16">
+    <div>
+      <SectionHeading eyebrow="Sobre mí" title="Me gusta que las cosas funcionen, y que se entiendan" />
+      <div class="mt-6 space-y-4 leading-relaxed text-fg-muted">
+        <p>
+          Estoy terminando Ingeniería Informática en la Universidad de La Sabana. Disfruto el camino completo de un
+          proyecto: entender el problema, escoger la solución más simple que funcione y dejarla lista para que otra
+          persona la use sin manual.
+        </p>
+        <p>
+          He trabajado en desarrollo web con React y Astro, web scraping con Python, aplicaciones de escritorio en
+          Java y bases de datos como MySQL, SQL Server y Firebase. Hoy aplico eso en SLB, automatizando procesos de un
+          equipo real.
+        </p>
+        <p>
+          Fuera del código toco piano y hago covers de metal; de ahí salió Oblicua.
+        </p>
+      </div>
 
-  <p class="text-lg leading-relaxed mb-6 text-left text-gray-300">
-    Tengo experiencia en desarrollo web con HTML 
-    <span class="inline-flex items-center align-middle mb-1">
-      <FaHtml5 size={20} className="text-orange-500" />
-    </span>, 
-    CSS 
-    <span class="inline-flex items-center align-middle mb-1">
-      <FaCss3Alt size={20} className="text-blue-500" />
-    </span>, 
-    JavaScript 
-    <span class="inline-flex items-center align-middle mb-1">
-      <FaJs size={20} className="text-yellow-500" />
-    </span>, 
-    React 
-    <span class="inline-flex items-center align-middle mb-1">
-      <FaReact size={20} className="text-cyan-500" />
-    </span>, 
-    Tailwind 
-    <span class="inline-flex items-center align-middle mb-1">
-      <RiTailwindCssFill size={24} className="text-teal-400" />
-    </span>, 
-    Astro 
-    <span class="inline-flex items-center align-middle mb-1">
-      <SiAstro size={20} className="text-purple-500" />
-    </span>, 
-    creando interfaces interactivas y funcionales. También he trabajado con Python 
-    <span class="inline-flex items-center align-middle mb-1">
-      <FaPython size={20} className="text-yellow-500" />
-    </span> 
-    para desarrollar web scrapers y con Java 
-    <span class="inline-flex items-center align-middle mb-1">
-      <FaJava size={20} className="text-blue-700" />
-    </span> 
-    para programas de escritorio sencillos. Además, sé manejar bases de datos como MySQL 
-    <span class="inline-flex items-center align-middle mb-1">
-      <GrMysql size={20} className="text-blue-500" />
-    </span>, 
-    SQL Server 
-    <span class="inline-flex items-center align-middle mb-1">
-      <DiMsqlServer size={26} className="text-red-500" />
-    </span> 
-    y Firebase
-    <span class="inline-flex items-center align-middle mb-1">
-      <IoLogoFirebase size={20} className="text-yellow-500" />
-    </span>.
-  </p>  
+      <div class="mt-8">
+        <p class="font-mono text-[11px] uppercase tracking-[0.16em] text-fg-subtle">Idiomas</p>
+        <ul class="mt-3 flex flex-wrap gap-2">
+          {languages.map((l) => <li class="chip text-fg">{l}</li>)}
+        </ul>
+      </div>
+    </div>
 
-  <p class="text-lg leading-relaxed mb-6 text-left text-gray-300">
-    Manejo con fluidez inglés 🇺🇸, italiano 🇮🇹 y español 🇪🇸 lo que me permite
-    colaborar en equipos diversos y comunicarme en entornos internacionales.
-  </p>
-  <p class="text-lg leading-relaxed mb-6 text-left text-gray-300">
-    Estoy buscando oportunidades como desarrollador junior, donde pueda crecer
-    profesionalmente y aportar mis habilidades al desarrollo de proyectos
-    innovadores.
-  </p>
-  <p class="text-lg leading-relaxed text-left text-gray-300">
-    <a href="mailto:giovarafi@gmail.com" class="text-[#4c63c1] font-bold hover:underline">¿Quieres saber más?</a> ¡Será un gusto
-    conectar contigo!
-  </p> 
-    
-</div>
+    <div class="grid gap-4 self-start">
+      {
+        groups.map((g) => (
+          <div class="rounded-3xl border border-ink-800 bg-ink-900/60 p-6">
+            <h3 class="font-mono text-xs uppercase tracking-[0.16em] text-fg-subtle">{g.title}</h3>
+            <ul class="mt-4 flex flex-wrap gap-2">
+              {g.items.map(({ name, Icon, color }) => (
+                <li class="inline-flex items-center gap-2 rounded-full border border-ink-700 bg-ink-850 px-3.5 py-1.5 text-sm text-fg">
+                  <Icon size={16} color={color} aria-hidden="true" />
+                  {name}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

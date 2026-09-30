@@ -1,146 +1,138 @@
 ---
-import { FaGithub, FaExternalLinkAlt, FaProjectDiagram , FaReact, FaInfoCircle, FaHtml5, FaCss3Alt, FaJs, FaPython, FaJava } from "react-icons/fa";
-import { RiTailwindCssFill } from "react-icons/ri";
-import { IoLogoFirebase, IoBuild } from "react-icons/io5";
-import { GrMysql } from "react-icons/gr";
-import { DiMsqlServer } from "react-icons/di";
-import { SiAstro } from "react-icons/si";
+import { Image } from "astro:assets";
+import { FaGithub, FaYoutube } from "react-icons/fa";
+import { FiArrowUpRight } from "react-icons/fi";
+import { projects } from "../data/projects";
+import SectionHeading from "./SectionHeading.astro";
 
-import project1Image1 from "../assets/projects/proyecto1-1.webp";
-import project1Image2 from "../assets/projects/proyecto1-2.webp";
-import project1Image3 from "../assets/projects/proyecto1-3.webp";
-import project2Image1 from "../assets/projects/proyecto2-1.webp";
-import project2Image2 from "../assets/projects/proyecto2-2.webp";
-import project2Image3 from "../assets/projects/proyecto2-3.webp";
-
-const projects = [
-  {
-    title: "NextPlayer",
-    description:
-      "Innovadora página web desarrollada con React que permite a los usuarios explorar los jugadores de fútbol más revalorizados en el mercado actual. Este proyecto combina técnicas de scraping, gestión de bases de datos en la nube y despliegue de aplicaciones. (El login podría tardar unos segundos en cargar debido a que el backend está en un plan gratuito de Render).",
-    images: [project1Image1.src, project1Image2.src, project1Image3.src],
-    github: "https://github.com/gianni28/frontendNextPlayer",
-    live: "https://frontend-next-player.vercel.app/login",
-    technologies: [
-      { name: "React", icon: FaReact },
-      { name: "Firebase", icon: IoLogoFirebase },
-    ],
-  },
-  {
-    title: "Centro médico de La Sabana",
-    description:
-      "Aplicación de escritorio desarrollada en Java con vistas diseñadas en Scene Builder y con persistencia de datos, enfocada en la gestión de un centro médico. Este proyecto permite realizar operaciones CRUD completas para médicos y pacientes. Los pacientes pueden agendar citas con médicos específicos, optimizando el flujo de trabajo del centro médico.",
-    images: [project2Image1.src, project2Image2.src, project2Image3.src],
-    github: "https://github.com/gianni28/centro-medico-de-la-sabana",
-    live: "https://youtu.be/oU_JBw_fEJA",
-    technologies: [
-      { name: "Java", icon: FaJava },
-      { name: "Scene Builder", icon: IoBuild },
-    ],
-  },
-];
+const linkIcon = { demo: FiArrowUpRight, code: FaGithub, video: FaYoutube } as const;
 ---
 
-<section class="py-20">
-  <h2
-    class="flex items-center justify-center gap-3 text-white text-4xl font-bold text-center mb-12"
-  >
-    <FaProjectDiagram size={32} className="text-blue-700" />
-    Mis Proyectos
-  </h2>
+<section id="proyectos" class="container-page py-20 md:py-28">
+  <SectionHeading
+    eyebrow="Proyectos"
+    title="Cosas que he construido"
+    intro="Proyectos personales y académicos, del problema a una versión que cualquiera puede usar."
+  />
 
-  <div class="grid gap-16">
+  <div class="mt-14 flex flex-col gap-10 md:gap-14">
     {
-      projects.map((project, projectIndex) => (
-        <div data-project class="flex flex-col lg:flex-row gap-6 py-16">
-          {/* Miniaturas */}
-          <div class="flex lg:flex-col gap-4 overflow-x-auto lg:overflow-visible">
-            {project.images.map((image, imgIndex) => (
-              <img
-                src={image}
-                alt={`Miniatura ${imgIndex + 1} del proyecto ${project.title}`}
-                class="thumbnail w-24 h-24 lg:w-32 lg:h-32 object-cover cursor-pointer rounded-lg border-2 border-transparent hover:border-white"
-                data-index={imgIndex}
-                data-project={projectIndex}
+      projects.map((project, i) => (
+        <article
+          class="grid gap-8 rounded-3xl border border-ink-800 bg-ink-900/60 p-4 sm:p-6 lg:grid-cols-[1.25fr_1fr] lg:gap-10 lg:p-8"
+          aria-labelledby={`p-${project.slug}`}
+          data-gallery
+        >
+          <div class={`flex flex-col gap-3 ${i % 2 === 1 ? "lg:order-2" : ""}`}>
+            <div class="overflow-hidden rounded-2xl border border-ink-800 bg-ink-850">
+              <Image
+                src={project.images[0].src}
+                alt={project.images[0].alt}
+                widths={[480, 800, 1200]}
+                sizes="(min-width: 1024px) 620px, 100vw"
+                class="aspect-video h-auto w-full object-cover"
+                data-gallery-main
+                loading={i === 0 ? "eager" : "lazy"}
               />
+            </div>
+            <div class="grid grid-cols-3 gap-3" role="group" aria-label={`Capturas de ${project.title}`}>
+              {project.images.map((img, idx) => (
+                <button
+                  type="button"
+                  class="overflow-hidden rounded-xl border-2 border-transparent opacity-60 transition hover:opacity-100 aria-pressed:border-brand aria-pressed:opacity-100"
+                  aria-pressed={idx === 0 ? "true" : "false"}
+                  aria-label={`Ver captura ${idx + 1}: ${img.alt}`}
+                  data-gallery-thumb
+                >
+                  <Image
+                    src={img.src}
+                    alt=""
+                    widths={[160, 320]}
+                    sizes="200px"
+                    class="aspect-video h-auto w-full object-cover"
+                   
+                  />
+                </button>
+              ))}
+            </div>
+            {project.images.map((img) => (
+              <template data-gallery-src>
+                <Image src={img.src} alt={img.alt} widths={[480, 800, 1200]} sizes="(min-width: 1024px) 620px, 100vw" />
+              </template>
             ))}
           </div>
 
-          {/* Contenido Principal */}
-          <div class="flex-1 space-y-4">
-            <h3 class="text-white text-2xl font-bold">{project.title}</h3>
-            <p class="text-gray-400">{project.description}</p>
-            <img
-              src={project.images[0]}
-              alt={`Imagen destacada del proyecto ${project.title}`}
-              class="featured-image w-full h-auto rounded-lg shadow-lg"
-              data-project={projectIndex}
-            />
+          <div class="flex flex-col">
+            <div class="flex flex-wrap items-center gap-3">
+              <h3 id={`p-${project.slug}`} class="font-display text-2xl font-bold tracking-tight text-white sm:text-3xl">
+                {project.title}
+              </h3>
+              {project.badge && (
+                <span class="rounded-full bg-brand px-2.5 py-0.5 font-mono text-[11px] font-medium uppercase tracking-wider text-ink-950">
+                  {project.badge}
+                </span>
+              )}
+            </div>
+            <p class="mt-2 text-base font-medium text-fg">{project.tagline}</p>
+            <p class="mt-4 leading-relaxed text-fg-muted">{project.description}</p>
 
-            {/* Contenedor de Iconos */}
-            <div class="flex items-center justify-between mt-4">
-              {/* Iconos de GitHub y External Link */}
-              <div class="flex gap-4">
-                <a
-                  href={project.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="text-gray-400 hover:text-white transition-transform transform hover:scale-110"
-                >
-                  <FaGithub size={24} />
-                </a>
-                <a
-                  href={project.live}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="text-gray-400 hover:text-blue-800 transition-transform transform hover:scale-110"
-                >
-                  <FaExternalLinkAlt size={24} />
-                </a>
-              </div>
+            <ul class="mt-5 space-y-2.5">
+              {project.highlights.map((h) => (
+                <li class="flex gap-3 text-sm leading-relaxed text-fg-muted">
+                  <span class="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-brand" aria-hidden="true" />
+                  <span>{h}</span>
+                </li>
+              ))}
+            </ul>
 
-              {/* Tecnologías */}
-              <div class="flex gap-2">
-                {project.technologies.map((tech, techIndex) => (
-                  <div
-                    data-tech={techIndex}
-                    class="flex items-center gap-1 text-gray-400 hover:text-white"
+            {project.note && <p class="mt-4 text-xs leading-relaxed text-fg-subtle">{project.note}</p>}
+
+            <ul class="mt-6 flex flex-wrap gap-2" aria-label="Tecnologías">
+              {project.tech.map((t) => (
+                <li class="chip">{t}</li>
+              ))}
+            </ul>
+
+            <div class="mt-auto flex flex-wrap gap-3 pt-7">
+              {project.links.map((link, li) => {
+                const Icon = linkIcon[link.kind];
+                return (
+                  <a
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class={li === 0 ? "btn-primary" : "btn-ghost"}
                   >
-                    <tech.icon size={20} />
-                    <span class="text-sm">{tech.name}</span>
-                  </div>
-                ))}
-              </div>
+                    {link.kind !== "demo" && <Icon size={16} aria-hidden="true" />}
+                    {link.label}
+                    {link.kind === "demo" && <Icon size={16} aria-hidden="true" />}
+                    <span class="sr-only"> (se abre en una pestaña nueva)</span>
+                  </a>
+                );
+              })}
             </div>
           </div>
-        </div>
+        </article>
       ))
     }
   </div>
 </section>
 
-
 <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const thumbnails = document.querySelectorAll(".thumbnail");
-
-    thumbnails.forEach((thumbnail) => {
-      thumbnail.addEventListener("click", (event) => {
-        const target = event.target;
-
-        // Validamos que target exista y sea un elemento de imagen
-        if (target && target instanceof HTMLImageElement) {
-          const projectIndex = target.dataset.project;
-          const imageIndex = target.dataset.index;
-
-          const featuredImage = document.querySelector(
-            `.featured-image[data-project="${projectIndex}"]`
-          );
-
-          if (featuredImage instanceof HTMLImageElement) {
-            featuredImage.src = target.src;
-          }
-        }
+  document.querySelectorAll<HTMLElement>("[data-gallery]").forEach((gallery) => {
+    const main = gallery.querySelector<HTMLImageElement>("[data-gallery-main]");
+    const thumbs = Array.from(gallery.querySelectorAll<HTMLButtonElement>("[data-gallery-thumb]"));
+    const sources = Array.from(gallery.querySelectorAll<HTMLTemplateElement>("[data-gallery-src]")).map((t) =>
+      t.content.querySelector("img"),
+    );
+    thumbs.forEach((thumb, idx) => {
+      thumb.addEventListener("click", () => {
+        const src = sources[idx];
+        if (!main || !src) return;
+        main.src = src.src;
+        main.srcset = src.srcset;
+        main.alt = src.alt;
+        thumbs.forEach((t) => t.setAttribute("aria-pressed", String(t === thumb)));
       });
     });
   });
