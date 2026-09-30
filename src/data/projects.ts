@@ -3,9 +3,9 @@ import type { ImageMetadata } from "astro";
 import oblicua1 from "../assets/projects/oblicua-1.png";
 import oblicua2 from "../assets/projects/oblicua-2.png";
 import oblicua3 from "../assets/projects/oblicua-3.png";
-import nextplayer1 from "../assets/projects/proyecto1-1.webp";
-import nextplayer2 from "../assets/projects/proyecto1-2.webp";
-import nextplayer3 from "../assets/projects/proyecto1-3.webp";
+import nextplayer1 from "../assets/projects/nextplayer-1.png";
+import nextplayer2 from "../assets/projects/nextplayer-2.png";
+import nextplayer3 from "../assets/projects/nextplayer-3.png";
 import medico1 from "../assets/projects/proyecto2-1.webp";
 import medico2 from "../assets/projects/proyecto2-2.webp";
 import medico3 from "../assets/projects/proyecto2-3.webp";
@@ -54,24 +54,25 @@ export const projects: Project[] = [
   {
     slug: "nextplayer",
     title: "NextPlayer",
-    tagline: "Descubre a los futbolistas que más se han revalorizado en el mercado.",
+    badge: "v2",
+    tagline: "Ranking de los futbolistas que más se revalorizaron en el último año.",
     description:
-      "Aplicación web en React que reúne a los jugadores de fútbol con mayor revalorización en el mercado actual. Combina web scraping para obtener los datos, una base de datos en la nube y un despliegue separado de frontend y backend.",
+      "Empezó en 2024 como un proyecto universitario con un scraper propio, Express y Firebase. En 2026 lo reescribí desde cero: ahora un pipeline de datos automático calcula el ranking cada semana a partir de un dataset abierto y la app lo sirve como un sitio estático que carga al instante. Filtra por posición, liga y edad, y abre la ficha de cada jugador con la evolución de su valor.",
     highlights: [
-      "Datos de mercado obtenidos con web scraping y almacenados en Firebase.",
-      "Registro e inicio de sesión de usuarios.",
-      "Frontend desplegado en Vercel y backend en Render.",
+      "Pipeline en TypeScript que procesa el historial completo de valoraciones y se ejecuta cada semana con GitHub Actions.",
+      "Arquitectura sin servidor: el ranking se publica como JSON estático, sin cold starts ni costos de backend.",
+      "Cuentas opcionales con Firebase Authentication y reglas de Firestore para guardar favoritos de forma segura.",
+      "Gráficas SVG propias, filtros compartibles en la URL, modo oscuro y pruebas automáticas con Vitest en CI.",
     ],
-    note: "El primer inicio de sesión puede tardar unos segundos: el backend está en el plan gratuito de Render.",
-    tech: ["React", "Firebase", "Web scraping", "Vercel", "Render"],
+    tech: ["React", "TypeScript", "Vite", "GitHub Actions", "Firebase", "Netlify"],
     links: [
-      { label: "Ver demo", href: "https://frontend-next-player.vercel.app/login", kind: "demo" },
-      { label: "Código", href: "https://github.com/gianni28/frontendNextPlayer", kind: "code" },
+      { label: "Ver demo", href: "https://nextplayer0.netlify.app/", kind: "demo" },
+      { label: "Código", href: "https://github.com/gianni28/nextplayer", kind: "code" },
     ],
     images: [
-      { src: nextplayer1, alt: "Pantalla de inicio de sesión de NextPlayer" },
-      { src: nextplayer2, alt: "Listado de jugadores revalorizados en NextPlayer" },
-      { src: nextplayer3, alt: "Detalle de jugadores en NextPlayer" },
+      { src: nextplayer1, alt: "Portada de NextPlayer con el jugador que más subió y el inicio del ranking" },
+      { src: nextplayer2, alt: "Ficha de un jugador en NextPlayer con la gráfica de su valor de mercado" },
+      { src: nextplayer3, alt: "NextPlayer en la versión para celular, en modo oscuro" },
     ],
   },
   {
