@@ -1,0 +1,59 @@
+---
+import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { SITE } from "../data/site";
+---
+
+<section id="contacto" class="container-page pb-24 md:pb-32">
+  <div class="relative overflow-hidden rounded-[2rem] border border-ink-800 bg-ink-900 px-6 py-14 text-center sm:px-12 md:py-20">
+    <div
+      class="pointer-events-none absolute -top-40 left-1/2 h-80 w-[40rem] max-w-full -translate-x-1/2 rounded-full bg-brand/20 blur-3xl"
+      aria-hidden="true"
+    >
+    </div>
+    <p class="eyebrow relative">Contacto</p>
+    <h2 class="section-title relative mx-auto mt-3 max-w-2xl sm:text-5xl">¿Construimos algo juntos?</h2>
+    <p class="relative mx-auto mt-5 max-w-xl text-lg leading-relaxed text-fg-muted">
+      Busco oportunidades como desarrollador junior donde pueda aportar desde el primer día y seguir creciendo. Si
+      tienes una vacante o una idea, escríbeme.
+    </p>
+
+    <div class="relative mt-9 flex flex-col items-center gap-3">
+      <div class="flex flex-wrap items-center justify-center gap-2 rounded-full border border-ink-700 bg-ink-950 p-1.5 pl-5">
+        <a href={`mailto:${SITE.email}`} class="font-mono text-sm text-white hover:text-brand sm:text-base">{SITE.email}</a>
+        <button type="button" class="btn-primary !py-2" data-copy={SITE.email}>
+          <span data-copy-label>Copiar</span>
+        </button>
+      </div>
+      <p class="sr-only" role="status" data-copy-status></p>
+    </div>
+
+    <div class="relative mt-8 flex flex-wrap justify-center gap-3">
+      <a href={SITE.links.linkedin} target="_blank" rel="noopener noreferrer" class="btn-ghost">
+        <FaLinkedin size={16} aria-hidden="true" /> LinkedIn
+      </a>
+      <a href={SITE.links.github} target="_blank" rel="noopener noreferrer" class="btn-ghost">
+        <FaGithub size={16} aria-hidden="true" /> GitHub
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>("[data-copy]").forEach((btn) => {
+    const label = btn.querySelector("[data-copy-label]");
+    const status = document.querySelector("[data-copy-status]");
+    btn.addEventListener("click", async () => {
+      const text = btn.dataset.copy ?? "";
+      try {
+        await navigator.clipboard.writeText(text);
+        if (label) label.textContent = "¡Copiado!";
+        if (status) status.textContent = "Correo copiado al portapapeles";
+      } catch {
+        if (label) label.textContent = "Selecciónalo";
+      }
+      setTimeout(() => {
+        if (label) label.textContent = "Copiar";
+      }, 2000);
+    });
+  });
+</script>

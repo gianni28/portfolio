@@ -1,54 +1,43 @@
-# Astro Starter Kit: Basics
+# Portafolio · Giovanni Raffa
 
-```sh
-npm create astro@latest -- --template basics
-```
+Sitio personal de Giovanni Raffa, estudiante de último semestre de Ingeniería Informática en la Universidad de La Sabana. Reúne proyectos, experiencia y datos de contacto.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
+**En vivo:** https://giovanniraffa.netlify.app
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Stack
 
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
+- [Astro 4](https://astro.build): sitio estático, HTML generado en el build y JavaScript mínimo en el cliente.
+- [Tailwind CSS 3](https://tailwindcss.com): estilos con un sistema de colores y tipografías propio (`tailwind.config.mjs`).
+- `astro:assets`: las capturas se optimizan en el build (WebP, varios tamaños y `srcset`).
+- `react-icons`: los íconos se renderizan en el servidor, no envían React al navegador.
+- `@astrojs/sitemap`, metadatos Open Graph y datos estructurados (JSON-LD) para SEO.
 
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
+## Estructura
 
 ```text
-/
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── components/
-│   │   └── Card.astro
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
+src/
+├── assets/          # Retrato y capturas de proyectos (se optimizan en el build)
+├── components/      # Secciones: Hero, Projects, Experience, About, Contact…
+├── data/
+│   ├── projects.ts  # Contenido de los proyectos
+│   └── site.ts      # Nombre, enlaces, correo y navegación
+├── layouts/         # Layout base con SEO
+└── pages/index.astro
+public/              # og.png, favicon, robots.txt
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+### Agregar un proyecto
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+1. Copia las capturas (idealmente 16:9) a `src/assets/projects/`.
+2. Agrega un objeto al arreglo de `src/data/projects.ts` con título, descripción, puntos destacados, tecnologías, enlaces e imágenes.
 
-Any static assets, like images, can be placed in the `public/` directory.
+No hay que tocar ningún componente.
 
-## 🧞 Commands
+## Comandos
 
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+| Comando           | Acción                                              |
+| :---------------- | :-------------------------------------------------- |
+| `npm install`     | Instala dependencias                                |
+| `npm run dev`     | Servidor local en `localhost:4321`                  |
+| `npm run build`   | Revisa tipos (`astro check`) y genera `./dist/`     |
+| `npm run preview` | Sirve el build localmente                           |

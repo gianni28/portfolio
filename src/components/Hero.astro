@@ -1,0 +1,86 @@
+---
+import { Image } from "astro:assets";
+import retrato from "../assets/retrato.png";
+import SocialLinks from "./SocialLinks.astro";
+import { SITE } from "../data/site";
+
+const facts = [
+  { label: "Ahora", value: "Práctica profesional en SLB" },
+  { label: "Estudios", value: "Ing. Informática · U. de La Sabana" },
+  { label: "Idiomas", value: "Español · Italiano · Inglés" },
+];
+---
+
+<section id="inicio" class="relative overflow-hidden">
+  <div class="hero-grid pointer-events-none absolute inset-0" aria-hidden="true"></div>
+
+  <div class="container-page relative grid items-center gap-12 pb-20 pt-16 md:grid-cols-[1.35fr_1fr] md:pb-28 md:pt-24">
+    <div class="order-2 md:order-1">
+      <p class="chip mb-6">
+        <span class="relative flex h-2 w-2" aria-hidden="true">
+          <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-60"></span>
+          <span class="relative inline-flex h-2 w-2 rounded-full bg-emerald-400"></span>
+        </span>
+        Abierto a oportunidades como desarrollador junior
+      </p>
+
+      <h1 class="font-display text-5xl font-extrabold leading-[1.02] tracking-tight text-white sm:text-6xl lg:text-7xl">
+        Hola, soy <span class="text-brand">Giovanni</span>.
+      </h1>
+
+      <p class="mt-6 max-w-xl text-lg leading-relaxed text-fg-muted">
+        Estudiante de último semestre de Ingeniería Informática en la Universidad de La Sabana. Construyo
+        herramientas que resuelven problemas reales: desde una app para seguir el mercado de fichajes hasta un
+        editor de perspectiva que corre por completo en el navegador.
+      </p>
+
+      <div class="mt-8 flex flex-wrap items-center gap-3">
+        <a href="#proyectos" class="btn-primary">
+          Ver proyectos
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12l7 7 7-7"></path></svg>
+        </a>
+        <a href={`mailto:${SITE.email}`} class="btn-ghost">Escríbeme</a>
+        <SocialLinks class="sm:ml-2" />
+      </div>
+
+      <dl class="mt-12 grid gap-4 border-t border-ink-800 pt-6 sm:grid-cols-3">
+        {
+          facts.map((f) => (
+            <div>
+              <dt class="font-mono text-[11px] uppercase tracking-[0.16em] text-fg-subtle">{f.label}</dt>
+              <dd class="mt-1 text-sm text-fg">{f.value}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+
+    <div class="order-1 mx-auto md:order-2">
+      <div class="relative h-56 w-56 sm:h-72 sm:w-72 lg:h-80 lg:w-80">
+        <div class="absolute -inset-3 rounded-full border border-dashed border-ink-700" aria-hidden="true"></div>
+        <div class="absolute inset-0 overflow-hidden rounded-full bg-gradient-to-b from-brand to-brand-strong">
+          <Image
+            src={retrato}
+            alt="Retrato de Giovanni Raffa"
+            widths={[240, 360, 480, 640]}
+            sizes="(min-width: 1024px) 320px, (min-width: 640px) 288px, 224px"
+            loading="eager"
+            fetchpriority="high"
+            class="h-full w-full object-cover"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero-grid {
+    background-image:
+      linear-gradient(to right, rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(ellipse 70% 60% at 60% 35%, #000 20%, transparent 75%);
+    -webkit-mask-image: radial-gradient(ellipse 70% 60% at 60% 35%, #000 20%, transparent 75%);
+  }
+</style>

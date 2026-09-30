@@ -1,51 +1,16 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import SocialIcons from "../components/SocialIcons.jsx";
-import fotoGiovanni from "../assets/facciaProfilo.webp";
-import SectionContainer from "../components/SectionContainer.astro";
+import Hero from "../components/Hero.astro";
 import Projects from "../components/Projects.astro";
+import Experience from "../components/Experience.astro";
 import About from "../components/About.astro";
 import Contact from "../components/Contact.astro";
-
-import "../styles/global.css";
 ---
 
-<Layout
-  title="Portafolio de Giovanni Raffa"
-  description="Contrata a Giovanni para desarrollar ideas innovativas."
->
-  <main>
-    <SectionContainer class="py-28 flex items-center gap-6">
-      <div class="flex-1">
-        <h1 class="text-white text-5xl font-bold pb-4">
-          Hola, soy <span class="text-blue-500">Giovanni</span>
-        </h1>
-        <h2 class="text-white text-1xl opacity-80 pb-4 text-pretty">
-          Ingeniero informático 👨‍💻, apasionado por la tecnología y el desarrollo
-          web.
-        </h2>
-        <SocialIcons />
-      </div>
-      <div class="relative w-56 h-56 lg:w-[250px] lg:h-[250px]">
-        <div class="absolute inset-0 bg-[#4c63c1] rounded-full -z-10"></div>
-        <img
-          src={fotoGiovanni.src}
-          alt="Giovanni Raffa"
-          class="w-full h-full rounded-full object-cover shadow-lg brightness-75"
-        />
-      </div>
-    </SectionContainer>
-
-    <SectionContainer id="proyectos" class="py-28 -scroll-m-40">
-      <Projects />
-    </SectionContainer>
-
-    <SectionContainer id="sobre-mi">
-      <About />
-    </SectionContainer>
-
-    <SectionContainer id="contacto">
-      <Contact />
-    </SectionContainer>
-  </main>
+<Layout>
+  <Hero />
+  <Projects />
+  <Experience />
+  <About />
+  <Contact />
 </Layout>

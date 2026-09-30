@@ -1,164 +1,117 @@
 ---
+import { Image } from "astro:assets";
 import faccia from "../assets/faccia.webp";
-
-const navItems = [
-  {
-    title: "Proyectos",
-    label: "proyectos",
-    url: "/#proyectos",
-  },
-  {
-    title: "Sobre mí",
-    label: "sobre-mi",
-    url: "/#sobre-mi",
-  },
-  {
-    title: "Contacto",
-    label: "contacto",
-    url: "mailto:giovarafi@gmail.com",
-  },
-];
+import { NAV, SITE } from "../data/site";
 ---
 
 <header
-  class="relative flex justify-between items-center py-5 w-full max-w-6xl mx-auto px-4 bg-[#050505] z-20"
+  id="site-header"
+  class="sticky top-0 z-40 border-b border-transparent bg-ink-950/70 backdrop-blur-md transition-colors duration-300 data-[scrolled=true]:border-ink-800"
 >
-  <!-- Logo o Imagen -->
-  <img class="rounded-full w-12 h-12" src={faccia.src} alt="Gianni" />
+  <div class="container-page flex h-16 items-center justify-between">
+    <a href="#inicio" class="group flex items-center gap-3" aria-label="Ir al inicio">
+      <Image
+        src={faccia}
+        alt=""
+        width={36}
+        height={36}
+        class="h-9 w-9 rounded-full ring-1 ring-ink-700 transition group-hover:ring-brand"
+      />
+      <span class="font-display text-base font-semibold tracking-tight text-white">
+        {SITE.name}
+      </span>
+    </a>
 
-  <!-- Botón Hamburguesa -->
-  <button
-    id="menu-toggle"
-    class="lg:hidden flex items-center px-3 py-2 border rounded text-white border-white"
-    aria-label="Toggle navigation"
-  >
-    <svg
-      class="fill-current h-5 w-5"
-      viewBox="0 0 20 20"
-      xmlns="http://www.w3.org/2000/svg"
+    <nav aria-label="Principal" class="hidden md:block">
+      <ul class="flex items-center gap-1">
+        {
+          NAV.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                data-nav-link
+                class="rounded-full px-4 py-2 text-sm text-fg-muted transition-colors hover:text-white aria-[current=true]:bg-ink-850 aria-[current=true]:text-white"
+              >
+                {item.title}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <button
+      id="menu-toggle"
+      type="button"
+      class="grid h-10 w-10 place-items-center rounded-full border border-ink-700 text-fg md:hidden"
+      aria-controls="mobile-menu"
+      aria-expanded="false"
+      aria-label="Abrir menú"
     >
-      <title>Menu</title>
-      <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
-    </svg>
-  </button>
+      <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+        <path data-open d="M4 7h16M4 12h16M4 17h16"></path>
+        <path data-close class="hidden" d="M6 6l12 12M18 6L6 18"></path>
+      </svg>
+    </button>
+  </div>
 
-  <!-- Navegación -->
-  <nav
-    id="menu"
-    class="absolute left-0 right-0 top-full z-10 bg-[#050505] lg:relative lg:top-auto lg:left-auto lg:right-auto lg:z-auto lg:translate-y-0 lg:scale-y-100 lg:opacity-100 lg:max-h-none lg:overflow-visible transition-transform transform -translate-y-full scale-y-0 origin-top lg:flex flex-col lg:flex-row gap-6 opacity-80 items-center"
-  >
-    {
-      navItems.map((link) => (
-        <a
-          class="block px-4 py-2 transition text-white hover:text-blue-500"
-          aria-label={link.label}
-          href={link.url}
-        >
-          {link.title}
-        </a>
-      ))
-    }
+  <nav id="mobile-menu" aria-label="Móvil" class="hidden border-t border-ink-800 bg-ink-950 md:hidden">
+    <ul class="container-page flex flex-col py-3">
+      {
+        NAV.map((item) => (
+          <li>
+            <a href={item.href} class="block rounded-lg px-2 py-3 text-base text-fg hover:bg-ink-850">
+              {item.title}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
   </nav>
 </header>
 
 <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const menuToggle = document.getElementById("menu-toggle");
-    const menu = document.getElementById("menu");
+  const header = document.getElementById("site-header");
+  const toggle = document.getElementById("menu-toggle");
+  const menu = document.getElementById("mobile-menu");
 
-    // Verificar que los elementos existen
-    if (menuToggle && menu) {
-      menuToggle.addEventListener("click", () => {
-        if (
-          menu.classList.contains("-translate-y-full") ||
-          menu.classList.contains("scale-y-0")
-        ) {
-          menu.classList.remove(
-            "-translate-y-full",
-            "scale-y-0",
-            "opacity-0",
-            "max-h-0"
-          );
-          menu.classList.add(
-            "translate-y-0",
-            "scale-y-100",
-            "opacity-100",
-            "max-h-screen"
-          );
-        } else {
-          menu.classList.add(
-            "-translate-y-full",
-            "scale-y-0",
-            "opacity-0",
-            "max-h-0"
-          );
-          menu.classList.remove(
-            "translate-y-0",
-            "scale-y-100",
-            "opacity-100",
-            "max-h-screen"
-          );
-        }
-      });
-    }
+  const setOpen = (open: boolean) => {
+    if (!toggle || !menu) return;
+    toggle.setAttribute("aria-expanded", String(open));
+    toggle.setAttribute("aria-label", open ? "Cerrar menú" : "Abrir menú");
+    menu.classList.toggle("hidden", !open);
+    toggle.querySelector("[data-open]")?.classList.toggle("hidden", open);
+    toggle.querySelector("[data-close]")?.classList.toggle("hidden", !open);
+  };
+
+  toggle?.addEventListener("click", () => setOpen(toggle.getAttribute("aria-expanded") !== "true"));
+  menu?.querySelectorAll("a").forEach((a) => a.addEventListener("click", () => setOpen(false)));
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") setOpen(false);
   });
+
+  const onScroll = () => header?.setAttribute("data-scrolled", String(window.scrollY > 8));
+  onScroll();
+  window.addEventListener("scroll", onScroll, { passive: true });
+
+  // Resalta la sección visible en la navegación
+  const links = Array.from(document.querySelectorAll<HTMLAnchorElement>("[data-nav-link]"));
+  const sections = links
+    .map((l) => document.querySelector<HTMLElement>(l.getAttribute("href") ?? ""))
+    .filter((s): s is HTMLElement => s !== null);
+
+  if ("IntersectionObserver" in window && sections.length) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          links.forEach((l) =>
+            l.setAttribute("aria-current", String(l.getAttribute("href") === `#${entry.target.id}`)),
+          );
+        });
+      },
+      { rootMargin: "-45% 0px -50% 0px" },
+    );
+    sections.forEach((s) => observer.observe(s));
+  }
 </script>
-
-<style is:global>
-  nav {
-    transition:
-      max-height 0.3s ease-in-out,
-      opacity 0.3s ease-in-out,
-      transform 0.3s ease-in-out;
-  }
-
-  /* Estilo adicional para pantallas pequeñas */
-  @media (max-width: 1024px) {
-    #menu {
-      position: absolute;
-      top: 100%; /* Justo debajo del header */
-      left: 0;
-      right: 0;
-      background: #050505; /* Fondo oscuro */
-      padding: 1rem 0;
-      border-top: 1px solid #333; /* Línea para separar */
-      max-height: 0; /* Ocultar completamente */
-      overflow: hidden;
-    }
-
-    #menu.translate-y-0 {
-      max-height: 300px; /* Asegura espacio suficiente para todas las opciones */
-      overflow: visible; /* Permite que se muestren todos los elementos */
-      opacity: 1;
-      pointer-events: auto;
-    }
-  }
-
-  /* Asegurar que el texto sea visible */
-  a {
-    color: white; /* Texto blanco por defecto */
-  }
-
-  a:hover {
-    color: #3b82f6; /* Azul para hover */
-  }
-
-  /* Estilo para pantallas grandes */
-  @media (min-width: 1025px) {
-    #menu {
-      display: flex !important;
-      flex-direction: row;
-      gap: 1.5rem;
-      position: relative;
-      top: auto;
-      left: auto;
-      right: auto;
-      background: none; /* Sin fondo */
-      padding: 0;
-      max-height: none;
-      overflow: visible;
-      transform: none;
-      opacity: 1;
-    }
-  }
-</style>
