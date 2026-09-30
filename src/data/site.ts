@@ -8,7 +8,7 @@ export const SITE = {
   location: "Colombia",
   links: {
     github: "https://github.com/gianni28",
-    linkedin: "https://linkedin.com/in/giovanni-raffa-045482321/",
+    linkedin: "https://www.linkedin.com/in/giovanniraffa/",
   },
 };
 
