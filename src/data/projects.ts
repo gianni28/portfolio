@@ -3,7 +3,7 @@ import type { ImageMetadata } from "astro";
 import riffkeys1 from "../assets/projects/riffkeys-1.png";
 import riffkeys2 from "../assets/projects/riffkeys-2.png";
 import riffkeys3 from "../assets/projects/riffkeys-3.png";
-import oblicua1 from "../assets/projects/oblicua-1.png";
+import oblicuaVideo from "../assets/projects/oblicua-video.png";
 import oblicua2 from "../assets/projects/oblicua-2.png";
 import oblicua3 from "../assets/projects/oblicua-3.png";
 import nextplayer1 from "../assets/projects/nextplayer-1.png";
@@ -62,23 +62,24 @@ export const projects: Project[] = [
     slug: "oblicua",
     title: "Oblicua",
     badge: "Nuevo",
-    tagline: "Texto e imágenes en perspectiva sobre cualquier foto, directo en el navegador.",
+    tagline: "Texto e imágenes en perspectiva sobre fotos y videos, directo en el navegador.",
     description:
-      "Nació para poner el título de mis covers de piano sobre el atril de los videos y terminó siendo una herramienta general: subes una foto, marcas las cuatro esquinas de una superficie y el texto o la imagen se adapta a su ángulo. Exporta la foto completa o solo el contenido en PNG transparente, listo para usar en un editor de video.",
+      "Nació para poner el título de mis covers de piano sobre el atril de los videos y terminó siendo una herramienta general: subes una foto o un video, marcas las cuatro esquinas de una superficie y el texto o la imagen se adapta a su ángulo. Con video funciona como un editor: lo reproduces con el letrero encima, eliges en una línea de tiempo cuándo aparece y desaparece, y descargas el MP4 con el audio original.",
     highlights: [
-      "Transformación proyectiva (homografía) implementada desde cero sobre Canvas 2D, sin librerías.",
-      "Remuestreo bilineal con alfa premultiplicado y fusión «multiplicar» para que el texto se vea impreso en la superficie.",
-      "Procesamiento 100 % local: las fotos nunca salen del dispositivo.",
-      "Interfaz táctil con lupa de precisión, arrastrar y soltar y pegado desde el portapapeles.",
+      "Transformación proyectiva (homografía) implementada desde cero sobre Canvas 2D, con remuestreo bilineal y alfa premultiplicado.",
+      "Exportación de video en el navegador con WebCodecs: el contenido deformado se calcula una vez y se compone sobre cada fotograma; el audio se copia sin recomprimir.",
+      "Editor con reproducción en vivo, línea de tiempo con miniaturas y transiciones de entrada y salida.",
+      "Fusión automática: los colores oscuros se ven impresos en la superficie y los claros se mantienen legibles.",
+      "Procesamiento 100 % local e interfaz táctil con lupa de precisión, pensada para iPhone.",
     ],
-    tech: ["JavaScript", "Canvas API", "HTML", "CSS", "Netlify"],
+    tech: ["JavaScript", "Canvas API", "WebCodecs", "Mediabunny", "HTML", "CSS", "Netlify"],
     links: [
       { label: "Probar Oblicua", href: "https://oblicua.netlify.app/", kind: "demo" },
       { label: "Código", href: "https://github.com/gianni28/oblicua", kind: "code" },
     ],
     images: [
       { src: oblicua2, alt: "Oblicua mostrando el título «Fear of the Dark» en perspectiva sobre un cuadro" },
-      { src: oblicua1, alt: "Vista general de Oblicua con el ejemplo y el panel de controles" },
+      { src: oblicuaVideo, alt: "Editor de video de Oblicua con la línea de tiempo y el letrero sobre el cuadro" },
       { src: oblicua3, alt: "Oblicua en la versión para celular" },
     ],
   },
