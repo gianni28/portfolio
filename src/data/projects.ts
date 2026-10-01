@@ -72,7 +72,10 @@ export const projects: Project[] = [
       "Interfaz táctil con lupa de precisión, arrastrar y soltar y pegado desde el portapapeles.",
     ],
     tech: ["JavaScript", "Canvas API", "HTML", "CSS", "Netlify"],
-    links: [{ label: "Probar Oblicua", href: "https://oblicua.netlify.app/", kind: "demo" }],
+    links: [
+      { label: "Probar Oblicua", href: "https://oblicua.netlify.app/", kind: "demo" },
+      { label: "Código", href: "https://github.com/gianni28/oblicua", kind: "code" },
+    ],
     images: [
       { src: oblicua2, alt: "Oblicua mostrando el título «Fear of the Dark» en perspectiva sobre un cuadro" },
       { src: oblicua1, alt: "Vista general de Oblicua con el ejemplo y el panel de controles" },
