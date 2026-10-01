@@ -89,9 +89,9 @@ export const projects: Project[] = [
     badge: "v2",
     tagline: "Ranking de los futbolistas que más se revalorizaron en el último año.",
     description:
-      "Empezó en 2024 como un proyecto universitario con un scraper propio, Express y Firebase. En 2026 lo reescribí desde cero: ahora un pipeline de datos automático calcula el ranking cada semana a partir de un dataset abierto y la app lo sirve como un sitio estático que carga al instante. Filtra por posición, liga y edad, y abre la ficha de cada jugador con la evolución de su valor.",
+      "Empezó en 2024 como un proyecto universitario con un scraper propio, Express y Firebase. En 2026 lo reescribí desde cero: un pipeline de datos combina un dataset abierto con valores consultados directamente a Transfermarkt, calcula el ranking y la app lo sirve como un sitio estático que carga al instante. Filtra por posición, liga y edad, y abre la ficha de cada jugador con la evolución de su valor.",
     highlights: [
-      "Pipeline en TypeScript que procesa el historial completo de valoraciones y se ejecuta cada semana con GitHub Actions.",
+      "Pipeline en TypeScript que procesa el historial de valoraciones y lo pone al día consultando Transfermarkt (valor y fichajes de miles de jugadores), con caché, reanudación y detección de bloqueos.",
       "Arquitectura sin servidor: el ranking se publica como JSON estático, sin cold starts ni costos de backend.",
       "Cuentas opcionales con Firebase Authentication y reglas de Firestore para guardar favoritos de forma segura.",
       "Gráficas SVG propias, filtros compartibles en la URL, modo oscuro y pruebas automáticas con Vitest en CI.",
