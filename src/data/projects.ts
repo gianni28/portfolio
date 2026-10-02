@@ -1,5 +1,8 @@
 import type { ImageMetadata } from "astro";
 
+import corde1 from "../assets/projects/corde-1.png";
+import corde2 from "../assets/projects/corde-2.png";
+import corde3 from "../assets/projects/corde-3.png";
 import riffkeys1 from "../assets/projects/riffkeys-1.png";
 import riffkeys2 from "../assets/projects/riffkeys-2.png";
 import riffkeys3 from "../assets/projects/riffkeys-3.png";
@@ -34,28 +37,24 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    slug: "riffkeys",
-    title: "Riffkeys",
-    badge: "En desarrollo",
-    tagline: "De la tab al piano: convierte canciones de guitarra en arreglos para dos manos.",
+    slug: "corde",
+    title: "Corde",
+    badge: "Destacado",
+    tagline: "Juego de ritmo multijugador en el navegador, al estilo de Guitar Hero.",
     description:
-      "Tocar metal en piano implica pasar a mano tablaturas de guitarra a partitura. Riffkeys automatiza ese paso: importa un Guitar Pro, MusicXML, MIDI o una tab en texto, reparte las pistas entre las dos manos y adapta cada nota al registro del piano. El resultado se ve como notas cayendo y como partitura, y se exporta para seguir trabajándolo en MuseScore.",
+      "Un juego de guitarra completo que corre en el navegador: se toca con el teclado en PC o con los dedos en el celular, con una biblioteca de canciones en línea, salas multijugador en tiempo real y dos jugadores en pantalla dividida en el mismo PC. Lee canciones en formato Clone Hero y, para las que no tienen niveles, los genera automáticamente a partir del MP3.",
     highlights: [
-      "Importa Guitar Pro, MusicXML y MIDI, más un parser propio de tablaturas en texto que detecta cuerdas, afinaciones bajadas y trastes de dos cifras.",
-      "Arreglador a dos manos: sugiere qué toca cada mano, mueve octavas, une notas dobladas y reduce acordes a lo que una mano alcanza.",
-      "Notas cayendo en Canvas a 60 fps sincronizadas con un reproductor propio en Web Audio, y teclado MIDI conectado por USB con Web MIDI.",
-      "Exporta a MIDI y MusicXML con tonalidad estimada (Krumhansl-Schmuckler); las pruebas verifican que lo exportado se vuelve a importar sin perder notas.",
+      "Escena 3D en Three.js con escenario, público, luces y pirotecnia; se adapta solo a 5 cuerdas en PC y 4 en celular.",
+      "Multijugador en tiempo real con Supabase Realtime: salas con código, invitación por enlace y marcador de los rivales en vivo.",
+      "Generador de niveles desde un MP3 con análisis de audio (spectral flux, tempo por autocorrelación y seguimiento del pulso): el 82–86 % de sus notas coincide con un chart hecho a mano.",
+      "Audio sincronizado con Web Audio, calibración automática de latencia, clasificación global protegida con Edge Functions y se instala como app.",
     ],
-    note: "En desarrollo activo. Próximos módulos: práctica con el teclado MIDI (aciertos, bucles y tempo progresivo) y notas cayendo en perspectiva sobre el video de las manos.",
-    tech: ["React", "TypeScript", "Vite", "alphaTab", "Web Audio", "Web MIDI", "Vitest"],
-    links: [
-      { label: "Probar Riffkeys", href: "https://riffkeys.netlify.app/", kind: "demo" },
-      { label: "Código", href: "https://github.com/gianni28/riffkeys", kind: "code" },
-    ],
+    tech: ["JavaScript", "Three.js", "Web Audio", "Supabase", "Edge Functions", "Vite", "Netlify"],
+    links: [{ label: "Jugar Corde", href: "https://cordegame.netlify.app/", kind: "demo" }],
     images: [
-      { src: riffkeys1, alt: "Riffkeys mostrando un riff de guitarra como notas cayendo para las dos manos" },
-      { src: riffkeys2, alt: "Partitura para piano generada por Riffkeys a partir de una tablatura" },
-      { src: riffkeys3, alt: "Riffkeys en la versión para celular" },
+      { src: corde1, alt: "Corde en plena canción, con el mástil, las notas y la pirotecnia del escenario" },
+      { src: corde2, alt: "Menú principal de Corde con el escenario 3D de fondo" },
+      { src: corde3, alt: "Corde en la versión para celular, con cuatro cuerdas táctiles" },
     ],
   },
   {
@@ -75,7 +74,6 @@ export const projects: Project[] = [
     tech: ["JavaScript", "Visión por computador", "WebGL", "WebCodecs", "MediaPipe", "Mediabunny", "Canvas API", "Netlify"],
     links: [
       { label: "Probar Oblicua", href: "https://oblicua.netlify.app/", kind: "demo" },
-      { label: "Código", href: "https://github.com/gianni28/oblicua", kind: "code" },
     ],
     images: [
       { src: oblicua2, alt: "Oblicua mostrando el título «Fear of the Dark» en perspectiva sobre un cuadro" },
@@ -99,12 +97,35 @@ export const projects: Project[] = [
     tech: ["React", "TypeScript", "Vite", "GitHub Actions", "Firebase", "Netlify"],
     links: [
       { label: "Ver demo", href: "https://nextplayer0.netlify.app/", kind: "demo" },
-      { label: "Código", href: "https://github.com/gianni28/nextplayer", kind: "code" },
     ],
     images: [
       { src: nextplayer1, alt: "Portada de NextPlayer con el jugador que más subió y el inicio del ranking" },
       { src: nextplayer2, alt: "Ficha de un jugador en NextPlayer con la gráfica de su valor de mercado" },
       { src: nextplayer3, alt: "NextPlayer en la versión para celular, en modo oscuro" },
+    ],
+  },
+  {
+    slug: "riffkeys",
+    title: "Riffkeys",
+    badge: "En desarrollo",
+    tagline: "De la tab al piano: convierte canciones de guitarra en arreglos para dos manos.",
+    description:
+      "Tocar metal en piano implica pasar a mano tablaturas de guitarra a partitura. Riffkeys automatiza ese paso: importa un Guitar Pro, MusicXML, MIDI o una tab en texto, reparte las pistas entre las dos manos y adapta cada nota al registro del piano. El resultado se ve como notas cayendo y como partitura, y se exporta para seguir trabajándolo en MuseScore.",
+    highlights: [
+      "Importa Guitar Pro, MusicXML y MIDI, más un parser propio de tablaturas en texto que detecta cuerdas, afinaciones bajadas y trastes de dos cifras.",
+      "Arreglador a dos manos: sugiere qué toca cada mano, mueve octavas, une notas dobladas y reduce acordes a lo que una mano alcanza.",
+      "Notas cayendo en Canvas a 60 fps sincronizadas con un reproductor propio en Web Audio, y teclado MIDI conectado por USB con Web MIDI.",
+      "Exporta a MIDI y MusicXML con tonalidad estimada (Krumhansl-Schmuckler); las pruebas verifican que lo exportado se vuelve a importar sin perder notas.",
+    ],
+    note: "Aviso: Riffkeys todavía está en desarrollo, así que algunas funciones pueden cambiar o fallar. Próximos módulos: práctica con el teclado MIDI (aciertos, bucles y tempo progresivo) y notas cayendo en perspectiva sobre el video de las manos.",
+    tech: ["React", "TypeScript", "Vite", "alphaTab", "Web Audio", "Web MIDI", "Vitest"],
+    links: [
+      { label: "Probar Riffkeys", href: "https://riffkeys.netlify.app/", kind: "demo" },
+    ],
+    images: [
+      { src: riffkeys1, alt: "Riffkeys mostrando un riff de guitarra como notas cayendo para las dos manos" },
+      { src: riffkeys2, alt: "Partitura para piano generada por Riffkeys a partir de una tablatura" },
+      { src: riffkeys3, alt: "Riffkeys en la versión para celular" },
     ],
   },
   {
@@ -121,7 +142,6 @@ export const projects: Project[] = [
     tech: ["Java", "JavaFX", "Scene Builder"],
     links: [
       { label: "Ver video", href: "https://youtu.be/oU_JBw_fEJA", kind: "video" },
-      { label: "Código", href: "https://github.com/gianni28/centro-medico-de-la-sabana", kind: "code" },
     ],
     images: [
       { src: medico1, alt: "Pantalla principal del Centro médico de La Sabana" },

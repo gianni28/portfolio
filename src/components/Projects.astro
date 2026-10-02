@@ -85,7 +85,11 @@ const linkIcon = { demo: FiArrowUpRight, code: FaGithub, video: FaYoutube } as c
               ))}
             </ul>
 
-            {project.note && <p class="mt-4 text-xs leading-relaxed text-fg-subtle">{project.note}</p>}
+            {project.note && (
+              <p class="mt-5 rounded-xl border border-brand/40 bg-brand/10 px-4 py-3 text-sm leading-relaxed text-fg">
+                {project.note}
+              </p>
+            )}
 
             <ul class="mt-6 flex flex-wrap gap-2" aria-label="Tecnologías">
               {project.tech.map((t) => (
